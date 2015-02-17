@@ -64,7 +64,9 @@ such as bold, italics, or underline.
 
 ## Usage
 
-### Usage Modes
+### Modes
+
+VIM has four main modes that you switch between while using it.
 
 - Normal mode: This is the mode VIM you in by default, and is where you can run
 editor commands. Commands are mainly used for navigation around the document,
@@ -132,7 +134,7 @@ For more detail on any command, in Normal mode type `:help <command>` where
 `<command>` is the command you need help with, and press enter. This will bring
 up VIM's extensive documentation on that command or functionality.
 
-#### Customization
+## Customization
 
 VIM is highly configurable and the average user will likely modify VIM's
 behavior to their own preferences after beginning to use VIM. This can be done
@@ -142,8 +144,10 @@ of the window. Configurations done with the `set` command will only last for
 the lifetime of the VIM session (until VIM is quit). Persistent configurations
 that apply to all VIM sessions go in a file named `.vimrc` which must be
 located in the user's home directory on the system (usually referred to as
-`~`). VIM additionally also has a directory called `.vim`, also within the
-user's home directory that is used for storing things like plugins.
+`~`). This file simply contains command line mode commands that vim will
+run when it starts. VIM additionally also has a directory called `.vim`, 
+also within the user's home directory that is used for storing things like
+plugins.
 
 Common Customizations
 
@@ -155,35 +159,81 @@ Common Customizations
 - `hlsearch`: highlight search terms
 - `ignorecase`: ignore letter case when searching
 
-## Plugins
+An sample `.vimrc` could look like this:
+
+```
+syntax enable
+set nocompatible
+set number
+set splitbelow
+set splitright
+set ruler
+set foldmethod=indent
+set foldlevel=99
+set nowrap
+set colorcolumn=80
+highlight ColorColumn ctermbg=7 " light grey color column
+set noswapfile
+set tabstop=4 shiftwidth=4 softtabstop=4 autoindent expandtab
+set hlsearch incsearch ignorecase smartcase
+
+```
+
+### Plugins
 
 Plugins are computer programs written in a language called Vimscript which
 further extend VIM's functionality. Many of them are available from the
 official [VIM plugin repository](http://www.vim.org/scripts/), however there are
-also many available from websites like github.com. Simple VIM plugins comes in
+also many available from websites like Github, which let users upload code
+and other plain text files.. Simple VIM plugins comes in
 the form of a simple .vim file which can be placed in `~/.vim/plugins`. For more
 complex plugins, each file of the plugin needs to be placed the proper
 directory. 
 
-### Plugin Managers
+#### Plugin Managers
 
 Managing plugins manually can quickly become very complex, which is why most
 users will find using a plugin manager to be much easier. I'll talk about two
 of the most popular ones.
 
-#### Pathogen
+##### Pathogen
 
-Pathogen was the first popular VIM plugin manager and simplifies plugin
+[Pathogen](https://github.com/tpope/vim-pathogen) was the first popular VIM plugin manager and simplifies plugin
 installation to be as easy to downloading them into the `~/.vim/bundle`
 directory.
 
-#### Vundle
+##### Vundle
 
-Vundle is a newer VIM plugin manager and is popular its direct integration with
+[Vundle](https://github.com/gmarik/Vundle.vim) is a newer VIM plugin manager
+and is popular its direct integration with
 Github and similarity to a package manager, like `apt` on Ubuntu Linux, for
 example. With Vundle, URLs to plugins available from the internet, or local
 file paths to plugins are specified in your `.vimrc` and then easily
 installed/removed/updated via command line commands like `BundleInstall`.
+
+The Vundle section of a `.vimrc` is below. The text in between quotes is the
+part of a Github URL, following the `http://github.com/`.
+
+```
+" Vim plugins
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-commentary'
+Bundle 'ervandew/supertab'
+Bundle 'tomtom/tlib_vim'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
+Bundle 'majutsushi/tagbar'
+Bundle 'dag/vim-fish'
+Bundle 'bling/vim-airline'
+Bundle 'sjl/gundo.vim'
+Bundle 'kien/ctrlp.vim'
+```
+
+Using Vundle looks like:
+
+![](vundle.png)
 
 ### Common/Recommended Plugins
 
@@ -192,3 +242,11 @@ installed/removed/updated via command line commands like `BundleInstall`.
 - [Syntastic](https://github.com/scrooloose/syntastic): Programming language syntax checking
 - [Snipmate](https://github.com/garbas/vim-snipmate): Easily insert certain textual snippets, useful for progammers
 - [Commentary](https://github.com/tpope/vim-commentary): Easily comment out code
+
+## Further Reading
+
+- [Official Vim Documentation](www.vim.org/docs.php)
+- [Vim Tips Wiki](http://vim.wikia.com/wiki/Vim_Tips_Wiki)
+- [Thoughtbot Vim Guides](http://robots.thoughtbot.com/tags/vim)
+- [Vim Awesome](http://vimawesome.com/)
+
