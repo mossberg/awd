@@ -1,12 +1,10 @@
-# VIM: Usage, and Beyond
-
 > The material in this reference is specifically written and tested for use on
 > Mac OS X from a command line environment, however nearly all of the material
 > should be fine on Linux. Most of the material should also be fine for
 > graphical VIM environments (MacVim, GVim). Your mileage may vary for use on
 > Windows. Additionally this guide isn't designed to be a comprehensive
 > reference to VIM usage, the
-> [official VIM > documentation](http://www.vim.org/docs.php) already exists
+> [official VIM documentation](http://www.vim.org/docs.php) already exists
 > for that. Rather this guide is intended to be a practical introduction to
 > VIM, while also covering areas less commonly seen in VIM guides, such as
 > customization.
