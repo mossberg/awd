@@ -157,7 +157,7 @@ Common Customizations
 - `hlsearch`: highlight search terms
 - `ignorecase`: ignore letter case when searching
 
-An sample `.vimrc` could look like this:
+A sample `.vimrc` could look like this:
 
 ```
 syntax enable
