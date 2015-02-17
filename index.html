@@ -1,0 +1,323 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Vim: Usage and Beyond by mossberg</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Vim: Usage and Beyond</h1>
+        <p>Mark Mossberg, ENG 3302 Project 2</p>
+        <p class="view"><a href="https://github.com/mossberg/awd">View the Project on GitHub <small>mossberg/awd</small></a></p>
+        <ul>
+          <li><a href="https://github.com/mossberg/awd/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/mossberg/awd/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/mossberg/awd">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <blockquote>
+<p>The material in this reference is specifically written and tested for use on
+Mac OS X from a command line environment, however nearly all of the material
+should be fine on Linux. Most of the material should also be fine for
+graphical VIM environments (MacVim, GVim). Your mileage may vary for use on
+Windows. Additionally this guide isn't designed to be a comprehensive
+reference to VIM usage, the
+<a href="http://www.vim.org/docs.php">official VIM &gt; documentation</a> already exists
+for that. Rather this guide is intended to be a practical introduction to
+VIM, while also covering areas less commonly seen in VIM guides, such as
+customization.</p>
+</blockquote>
+
+<h2>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick Start</h2>
+
+<p>This section will provide the required information for users that want to get
+started using VIM immediately however I strongly recommend reading through the
+rest of this document at some point.</p>
+
+<p>To open a document for editing, run</p>
+
+<pre><code>$ vim &lt;filename&gt;
+</code></pre>
+
+<p>Press <code>i</code> to enter Insert mode. Use the arrow keys to navigate the cursor to
+the desires position and type as normal.</p>
+
+<p>To save, press , type <code>:w</code>, and press . To begin editing again,
+follow the instruction point above.</p>
+
+<p>To exit VIM, press , type <code>:q</code>, and press . If you want to save
+and quit, instead type ":wq" and press .</p>
+
+<h2>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h2>
+
+<p>VIM, not undeservingly, has gained a reputation for being impossible to use, or
+at least having a very steep learning curve. This is due to the need to
+memorize many arcane, unintuitive commands and modes just for a purpose as
+basic as typing characters into a file.</p>
+
+<p>This comic from the Internet does a good job of illustrating learning VIM
+vs other, more beginner friendly editors like Notepad and Pico.</p>
+
+<p><img src="editor-learning-curve.png" alt=""></p>
+
+<p><em>Image taken from <a href="http://unix.stackexchange.com/questions/986">http://unix.stackexchange.com/questions/986</a></em></p>
+
+<h3>
+<a id="what-is-vim" class="anchor" href="#what-is-vim" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is VIM?</h3>
+
+<p>VIM is a text editor, used for creating and editing plain text files. VIM is
+commonly used for writing computer programs but is more than capable of
+creating any sort of plain text document, like a "README.txt" file for example.
+VIM is also incredibly versatile and is available and fully functional in both
+graphical and text terminal based environments, lending itself to be used on
+both desktop and server operating systems.</p>
+
+<h3>
+<a id="what-isnt-vim" class="anchor" href="#what-isnt-vim" aria-hidden="true"><span class="octicon octicon-link"></span></a>What isn't VIM?</h3>
+
+<p>VIM is not a rich text editor. VIM is not designed for the type of text editing
+Microsoft Word is usually associated with and does not support text styling
+such as bold, italics, or underline.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="modes" class="anchor" href="#modes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Modes</h3>
+
+<p>VIM has four main modes that you switch between while using it.</p>
+
+<ul>
+<li>Normal mode: This is the mode VIM you in by default, and is where you can run
+editor commands. Commands are mainly used for navigation around the document,
+searching, and deleting/cut-and-paste'ing.</li>
+<li>Insert mode: This is the standard mode for actually writing text into the file.
+You enter this mode by running the editor command <code>i</code> while in normal mode.</li>
+<li>Visual mode: This mode lets you select large blocks of text and perform
+operations on them. This emulates the click and drag behavior of graphical
+interfaces if you are using VIM in a text terminal. You enter this mode by
+running the editor command <code>v</code> while in normal mode.</li>
+<li>Command Line mode: This mode lets you enter in VIM commands, distinct from the
+above editor commands, that enable more advanced functionality such as
+searching and replacing in the document, and configuring VIM settings. You
+enter this mode by typing <code>:</code> while in normal mode.</li>
+</ul>
+
+<h3>
+<a id="basic-introduction" class="anchor" href="#basic-introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Introduction</h3>
+
+<blockquote>
+<p>All commands referenced in this section refer to Normal mode commands.</p>
+</blockquote>
+
+<h4>
+<a id="opening-saving-closing" class="anchor" href="#opening-saving-closing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Opening, Saving, Closing</h4>
+
+<p>To open a file in VIM, at a command line shell, type <code>vim &lt;filename&gt;</code> and press
+enter. To save, run the command line command, <code>w</code>. To quit, run the command
+line command <code>q</code>. These command line commands can be chained together; for
+example, to save and quit, run <code>wq</code> in command line mode.</p>
+
+<h4>
+<a id="navigation" class="anchor" href="#navigation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Navigation</h4>
+
+<p>Basic navigation in VIM is accomplished by using the <code>hjkl</code> keys, corresponding
+to the "left", "down", "up", and "right" directions respectively. Arrow keys
+also work, but use of them is discouraged since it is much faster to use <code>hjkl</code>
+and keep your fingers on the home keyboard row. To move more quickly around in
+VIM, the <code>w</code>, <code>e</code>, and <code>b</code> keys can also be used. <code>w</code> moves to the beginning of
+the next word, <code>e</code> moves to the end of the next word, and <code>b</code> moves to the
+beginning of the previous word. At any point, to reset VIM and clear any
+commands that may have been entered, hit <code>&lt;escape&gt;</code>. To jump up and down half of
+a window for page-up and page-down behavior, use <code>Ctrl-d</code> and <code>Ctrl-u</code>. To search
+through the document, press <code>/</code>, type what you are searching for, and press
+<code>&lt;enter&gt;</code>. This will search from the current cursor position. Press <code>n</code> to
+proceed forward through the results, or <code>N</code> to go backwards.</p>
+
+<h4>
+<a id="editing" class="anchor" href="#editing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Editing</h4>
+
+<p>Once you've navigated the cursor to a location where you would like to insert
+text, press the <code>i</code> key to enter Insert mode. Now you can type as normal, using
+characters keys, arrows and backspace/delete. To exit back into Insert mode,
+press <code>&lt;escape&gt;</code>.</p>
+
+<p>In Normal mode <code>x</code> and <code>X</code> can be used to delete the character currently under
+the cursor, and the character before the cursor, respectively. The <code>d</code> can also
+be paired with an navigational command to delete words or lines at a time. For
+example, pressing <code>de</code> will delete every character until the end of the current
+word. <code>dd</code> is a particularly useful command which deletes the entire line the
+cursor is on.</p>
+
+<p>Something that may be confusing to new VIM users is that there is no
+distinction between deleting and cutting (referring to cut and paste). That is,
+when any set of characters is deleted, it is automatically saved in buffer
+space to be pasted when <code>p</code>, the paste command, is pressed. To copy characters,
+rather than deleting them, the <code>y</code> key is used in the same fashion as the <code>d</code>
+key. For example, pressing <code>ye</code> copies all characters until the end of the
+current word. <code>yy</code> is also useful, and copies the current line.</p>
+
+<p>For more detail on any command, in Normal mode type <code>:help &lt;command&gt;</code> where
+<code>&lt;command&gt;</code> is the command you need help with, and press enter. This will bring
+up VIM's extensive documentation on that command or functionality.</p>
+
+<h2>
+<a id="customization" class="anchor" href="#customization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Customization</h2>
+
+<p>VIM is highly configurable and the average user will likely modify VIM's
+behavior to their own preferences after beginning to use VIM. This can be done
+within a VIM session using the <code>set</code> command line mode command, for example,
+running <code>set number</code> in command line mode enables line numbers along the left
+of the window. Configurations done with the <code>set</code> command will only last for
+the lifetime of the VIM session (until VIM is quit). Persistent configurations
+that apply to all VIM sessions go in a file named <code>.vimrc</code> which must be
+located in the user's home directory on the system (usually referred to as
+<code>~</code>). This file simply contains command line mode commands that vim will
+run when it starts. VIM additionally also has a directory called <code>.vim</code>, 
+also within the user's home directory that is used for storing things like
+plugins.</p>
+
+<p>Common Customizations</p>
+
+<ul>
+<li>
+<code>syntax enable</code>: activates programming language syntax highlighting</li>
+<li>
+<code>number</code>: activates line numbers</li>
+<li>
+<code>nowrap</code>: suppresses default line wrapping when a line gets longer than the
+window</li>
+<li>
+<code>mouse=a</code>: activates mouse usage in text terminals</li>
+<li>
+<code>hlsearch</code>: highlight search terms</li>
+<li>
+<code>ignorecase</code>: ignore letter case when searching</li>
+</ul>
+
+<p>An sample <code>.vimrc</code> could look like this:</p>
+
+<pre><code>syntax enable
+set nocompatible
+set number
+set splitbelow
+set splitright
+set ruler
+set foldmethod=indent
+set foldlevel=99
+set nowrap
+set colorcolumn=80
+highlight ColorColumn ctermbg=7 " light grey color column
+set noswapfile
+set tabstop=4 shiftwidth=4 softtabstop=4 autoindent expandtab
+set hlsearch incsearch ignorecase smartcase
+
+</code></pre>
+
+<h3>
+<a id="plugins" class="anchor" href="#plugins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugins</h3>
+
+<p>Plugins are computer programs written in a language called Vimscript which
+further extend VIM's functionality. Many of them are available from the
+official <a href="http://www.vim.org/scripts/">VIM plugin repository</a>, however there are
+also many available from websites like Github, which let users upload code
+and other plain text files.. Simple VIM plugins comes in
+the form of a simple .vim file which can be placed in <code>~/.vim/plugins</code>. For more
+complex plugins, each file of the plugin needs to be placed the proper
+directory. </p>
+
+<h4>
+<a id="plugin-managers" class="anchor" href="#plugin-managers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugin Managers</h4>
+
+<p>Managing plugins manually can quickly become very complex, which is why most
+users will find using a plugin manager to be much easier. I'll talk about two
+of the most popular ones.</p>
+
+<h5>
+<a id="pathogen" class="anchor" href="#pathogen" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pathogen</h5>
+
+<p><a href="https://github.com/tpope/vim-pathogen">Pathogen</a> was the first popular VIM plugin manager and simplifies plugin
+installation to be as easy to downloading them into the <code>~/.vim/bundle</code>
+directory.</p>
+
+<h5>
+<a id="vundle" class="anchor" href="#vundle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vundle</h5>
+
+<p><a href="https://github.com/gmarik/Vundle.vim">Vundle</a> is a newer VIM plugin manager
+and is popular its direct integration with
+Github and similarity to a package manager, like <code>apt</code> on Ubuntu Linux, for
+example. With Vundle, URLs to plugins available from the internet, or local
+file paths to plugins are specified in your <code>.vimrc</code> and then easily
+installed/removed/updated via command line commands like <code>BundleInstall</code>.</p>
+
+<p>The Vundle section of a <code>.vimrc</code> is below. The text in between quotes is the
+part of a Github URL, following the <code>http://github.com/</code>.</p>
+
+<pre><code>" Vim plugins
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-commentary'
+Bundle 'ervandew/supertab'
+Bundle 'tomtom/tlib_vim'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
+Bundle 'majutsushi/tagbar'
+Bundle 'dag/vim-fish'
+Bundle 'bling/vim-airline'
+Bundle 'sjl/gundo.vim'
+Bundle 'kien/ctrlp.vim'
+</code></pre>
+
+<p>Using Vundle looks like:</p>
+
+<p><img src="vundle.png" alt=""></p>
+
+<h3>
+<a id="commonrecommended-plugins" class="anchor" href="#commonrecommended-plugins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Common/Recommended Plugins</h3>
+
+<ul>
+<li>
+<a href="https://github.com/scrooloose/nerdtree">NerdTree</a>: Creates a file browser within VIM which makes it much easier to
+navigate a project with multiple files</li>
+<li>
+<a href="https://github.com/scrooloose/syntastic">Syntastic</a>: Programming language syntax checking</li>
+<li>
+<a href="https://github.com/garbas/vim-snipmate">Snipmate</a>: Easily insert certain textual snippets, useful for progammers</li>
+<li>
+<a href="https://github.com/tpope/vim-commentary">Commentary</a>: Easily comment out code</li>
+</ul>
+
+<h2>
+<a id="further-reading" class="anchor" href="#further-reading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Further Reading</h2>
+
+<ul>
+<li><a href="www.vim.org/docs.php">Official Vim Documentation</a></li>
+<li><a href="http://vim.wikia.com/wiki/Vim_Tips_Wiki">Vim Tips Wiki</a></li>
+<li><a href="http://robots.thoughtbot.com/tags/vim">Thoughtbot Vim Guides</a></li>
+<li><a href="http://vimawesome.com/">Vim Awesome</a></li>
+</ul>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/mossberg">mossberg</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
