@@ -30,7 +30,7 @@
         <blockquote>
 <p>The material in this reference is specifically written and tested for use on
 Mac OS X from a command line environment, however nearly all of the material
-should be fine on Linux. Most of the material should also be fine for
+should be compatible with Linux. Most of the material should also work for
 graphical VIM environments (MacVim, GVim). Your mileage may vary for use on
 Windows. Additionally this guide isn't designed to be a comprehensive
 reference to VIM usage, the
@@ -44,8 +44,8 @@ customization.</p>
 <a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick Start</h2>
 
 <p>This section will provide the required information for users that want to get
-started using VIM immediately however I strongly recommend reading through the
-rest of this document at some point.</p>
+started using VIM immediately. However I strongly recommend reading through the
+rest of this document.</p>
 
 <p>To open a document for editing, run</p>
 
@@ -53,7 +53,7 @@ rest of this document at some point.</p>
 </code></pre>
 
 <p>Press <code>i</code> to enter Insert mode. Use the arrow keys to navigate the cursor to
-the desires position and type as normal.</p>
+the desired position and type as normal.</p>
 
 <p>To save, press , type <code>:w</code>, and press . To begin editing again,
 follow the instruction point above.</p>
@@ -104,7 +104,7 @@ such as bold, italics, or underline.</p>
 <ul>
 <li>Normal mode: This is the mode VIM you in by default, and is where you can run
 editor commands. Commands are mainly used for navigation around the document,
-searching, and deleting/cut-and-paste'ing.</li>
+search, and deletion/cut-and-paste.</li>
 <li>Insert mode: This is the standard mode for actually writing text into the file.
 You enter this mode by running the editor command <code>i</code> while in normal mode.</li>
 <li>Visual mode: This mode lets you select large blocks of text and perform
@@ -153,12 +153,12 @@ proceed forward through the results, or <code>N</code> to go backwards.</p>
 
 <p>Once you've navigated the cursor to a location where you would like to insert
 text, press the <code>i</code> key to enter Insert mode. Now you can type as normal, using
-characters keys, arrows and backspace/delete. To exit back into Insert mode,
+characters keys, arrows and backspace/delete. To exit back into Normal mode,
 press <code>&lt;escape&gt;</code>.</p>
 
 <p>In Normal mode <code>x</code> and <code>X</code> can be used to delete the character currently under
 the cursor, and the character before the cursor, respectively. The <code>d</code> can also
-be paired with an navigational command to delete words or lines at a time. For
+be paired with a navigational command to delete words or lines at a time. For
 example, pressing <code>de</code> will delete every character until the end of the current
 word. <code>dd</code> is a particularly useful command which deletes the entire line the
 cursor is on.</p>
@@ -171,16 +171,162 @@ rather than deleting them, the <code>y</code> key is used in the same fashion as
 key. For example, pressing <code>ye</code> copies all characters until the end of the
 current word. <code>yy</code> is also useful, and copies the current line.</p>
 
-<p>For more detail on any command, in Normal mode type <code>:help &lt;command&gt;</code> where
+<p>For more details on any command, in Normal mode type <code>:help &lt;command&gt;</code> where
 <code>&lt;command&gt;</code> is the command you need help with, and press enter. This will bring
 up VIM's extensive documentation on that command or functionality.</p>
+
+<h4>
+<a id="summary" class="anchor" href="#summary" aria-hidden="true"><span class="octicon octicon-link"></span></a>Summary</h4>
+
+<blockquote>
+<p>Reminder: This is not a comprehensive list of <em>all</em> VIM commands, just common
+ones.</p>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Mode</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vim &lt;filename&gt;</code></td>
+<td>N/A (run outside vim)</td>
+<td>open file</td>
+</tr>
+<tr>
+<td><code>&lt;escape&gt;</code></td>
+<td>Any</td>
+<td>Reset VIM and switch to Normal mode</td>
+</tr>
+<tr>
+<td><code>i</code></td>
+<td>Normal</td>
+<td>Enter Insert mode</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>Command Line</td>
+<td>Save</td>
+</tr>
+<tr>
+<td><code>q</code></td>
+<td>Command Line</td>
+<td>Quit</td>
+</tr>
+<tr>
+<td><code>wq</code></td>
+<td>Command Line</td>
+<td>Save &amp; Quit (Command chaining example)</td>
+</tr>
+<tr>
+<td><code>help &lt;command&gt;</code></td>
+<td>Command Line</td>
+<td>Bring up VIM documentation on <code>&lt;command&gt;</code>
+</td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>Normal</td>
+<td>Move cursor left</td>
+</tr>
+<tr>
+<td><code>j</code></td>
+<td>Normal</td>
+<td>Move cursor down</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>Normal</td>
+<td>Move cursor up</td>
+</tr>
+<tr>
+<td><code>l</code></td>
+<td>Normal</td>
+<td>Move cursor right</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>Normal</td>
+<td>Move cursor to beginning of next word</td>
+</tr>
+<tr>
+<td><code>e</code></td>
+<td>Normal</td>
+<td>Move cursor to end of next word</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>Normal</td>
+<td>Move cursor to beginning of previous word</td>
+</tr>
+<tr>
+<td><code>Ctrl-d</code></td>
+<td>Normal</td>
+<td>Page down</td>
+</tr>
+<tr>
+<td><code>Ctrl-u</code></td>
+<td>Normal</td>
+<td>Page up</td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>Normal</td>
+<td>Search</td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td>Normal</td>
+<td>Go to next search result</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>Normal</td>
+<td>Go to previous search result</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>Normal</td>
+<td>Delete character under cursor</td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>Normal</td>
+<td>(Backspace) Delete character before cursor</td>
+</tr>
+<tr>
+<td><code>d&lt;navigation command&gt;</code></td>
+<td>Normal</td>
+<td>Delete in the direction the navigation command specifies. Saves deleted text in cut/paste buffer.</td>
+</tr>
+<tr>
+<td><code>dd</code></td>
+<td>Normal</td>
+<td>Delete entire line</td>
+</tr>
+<tr>
+<td><code>y&lt;navigation command&gt;</code></td>
+<td>Normal</td>
+<td>Yank (Saves text into copy/paste buffer).</td>
+</tr>
+<tr>
+<td><code>yy</code></td>
+<td>Normal</td>
+<td>Yank entire line.</td>
+</tr>
+</tbody>
+</table>
 
 <h2>
 <a id="customization" class="anchor" href="#customization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Customization</h2>
 
 <p>VIM is highly configurable and the average user will likely modify VIM's
-behavior to their own preferences after beginning to use VIM. This can be done
-within a VIM session using the <code>set</code> command line mode command, for example,
+behavior to their personal preferences after beginning to use VIM. This can be done
+within a VIM session using the <code>set</code> command line mode command. For example,
 running <code>set number</code> in command line mode enables line numbers along the left
 of the window. Configurations done with the <code>set</code> command will only last for
 the lifetime of the VIM session (until VIM is quit). Persistent configurations
@@ -231,12 +377,12 @@ set hlsearch incsearch ignorecase smartcase
 <h3>
 <a id="plugins" class="anchor" href="#plugins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugins</h3>
 
-<p>Plugins are computer programs written in a language called Vimscript which
+<p>Plugins are computer programs written in a language called Vimscript that
 further extend VIM's functionality. Many of them are available from the
 official <a href="http://www.vim.org/scripts/">VIM plugin repository</a>, however there are
 also many available from websites like Github, which let users upload code
-and other plain text files.. Simple VIM plugins comes in
-the form of a simple .vim file which can be placed in <code>~/.vim/plugins</code>. For more
+and other plain text files. Simple VIM plugins comes in
+the form of a .vim file which can be placed in <code>~/.vim/plugins</code>. For more
 complex plugins, each file of the plugin needs to be placed the proper
 directory. </p>
 
@@ -244,8 +390,8 @@ directory. </p>
 <a id="plugin-managers" class="anchor" href="#plugin-managers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugin Managers</h4>
 
 <p>Managing plugins manually can quickly become very complex, which is why most
-users will find using a plugin manager to be much easier. I'll talk about two
-of the most popular ones.</p>
+users will find using a plugin manager to be much easier. Two of the most
+popular ones include:</p>
 
 <h5>
 <a id="pathogen" class="anchor" href="#pathogen" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pathogen</h5>
@@ -258,7 +404,7 @@ directory.</p>
 <a id="vundle" class="anchor" href="#vundle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vundle</h5>
 
 <p><a href="https://github.com/gmarik/Vundle.vim">Vundle</a> is a newer VIM plugin manager
-and is popular its direct integration with
+and is popular due to its direct integration with
 Github and similarity to a package manager, like <code>apt</code> on Ubuntu Linux, for
 example. With Vundle, URLs to plugins available from the internet, or local
 file paths to plugins are specified in your <code>.vimrc</code> and then easily
