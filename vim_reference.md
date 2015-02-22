@@ -132,7 +132,7 @@ For more details on any command, in Normal mode type `:help <command>` where
 `<command>` is the command you need help with, and press enter. This will bring
 up VIM's extensive documentation on that command or functionality.
 
-### Selecting Text
+#### Selecting Text
 
 Text selection is done in VIM's visual mode. Press `v` to enter Visual mode
 from Normal mode, then use any previous movement command to select text in that
