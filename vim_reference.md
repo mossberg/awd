@@ -1,6 +1,6 @@
 > The material in this reference is specifically written and tested for use on
 > Mac OS X from a command line environment, however nearly all of the material
-> should be fine on Linux. Most of the material should also be fine for
+> should be compatible with Linux. Most of the material should also work for
 > graphical VIM environments (MacVim, GVim). Your mileage may vary for use on
 > Windows. Additionally this guide isn't designed to be a comprehensive
 > reference to VIM usage, the
@@ -12,8 +12,8 @@
 ## Quick Start
 
 This section will provide the required information for users that want to get
-started using VIM immediately however I strongly recommend reading through the
-rest of this document at some point.
+started using VIM immediately. However I strongly recommend reading through the
+rest of this document.
 
 To open a document for editing, run
 
@@ -22,7 +22,7 @@ $ vim <filename>
 ```
 
 Press `i` to enter Insert mode. Use the arrow keys to navigate the cursor to
-the desires position and type as normal.
+the desired position and type as normal.
 
 To save, press <escape>, type `:w`, and press <enter>. To begin editing again,
 follow the instruction point above.
@@ -68,7 +68,7 @@ VIM has four main modes that you switch between while using it.
 
 - Normal mode: This is the mode VIM you in by default, and is where you can run
 editor commands. Commands are mainly used for navigation around the document,
-searching, and deleting/cut-and-paste'ing.
+search, and deletion/cut-and-paste.
 - Insert mode: This is the standard mode for actually writing text into the file.
 You enter this mode by running the editor command `i` while in normal mode.
 - Visual mode: This mode lets you select large blocks of text and perform
@@ -110,12 +110,12 @@ proceed forward through the results, or `N` to go backwards.
 
 Once you've navigated the cursor to a location where you would like to insert
 text, press the `i` key to enter Insert mode. Now you can type as normal, using
-characters keys, arrows and backspace/delete. To exit back into Insert mode,
+characters keys, arrows and backspace/delete. To exit back into Normal mode,
 press `<escape>`.
 
 In Normal mode `x` and `X` can be used to delete the character currently under
 the cursor, and the character before the cursor, respectively. The `d` can also
-be paired with an navigational command to delete words or lines at a time. For
+be paired with a navigational command to delete words or lines at a time. For
 example, pressing `de` will delete every character until the end of the current
 word. `dd` is a particularly useful command which deletes the entire line the
 cursor is on.
@@ -128,15 +128,48 @@ rather than deleting them, the `y` key is used in the same fashion as the `d`
 key. For example, pressing `ye` copies all characters until the end of the
 current word. `yy` is also useful, and copies the current line.
 
-For more detail on any command, in Normal mode type `:help <command>` where
+For more details on any command, in Normal mode type `:help <command>` where
 `<command>` is the command you need help with, and press enter. This will bring
 up VIM's extensive documentation on that command or functionality.
+
+#### Summary
+
+> Reminder: This is not a comprehensive list of *all* VIM commands, just common
+> ones.
+
+Command | Mode | Action
+------- | ------ | ------
+`vim <filename>` | N/A (run outside vim) | open file
+`<escape>` | Any | Reset VIM and switch to Normal mode
+`i` | Normal | Enter Insert mode
+`w` | Command Line | Save
+`q` | Command Line | Quit
+`wq` | Command Line | Save & Quit (Command chaining example)
+`help <command>` | Command Line | Bring up VIM documentation on `<command>`
+`h` | Normal | Move cursor left
+`j` | Normal | Move cursor down
+`k` | Normal | Move cursor up
+`l` | Normal | Move cursor right
+`w` | Normal | Move cursor to beginning of next word
+`e` | Normal | Move cursor to end of next word
+`b` | Normal | Move cursor to beginning of previous word
+`Ctrl-d` | Normal | Page down
+`Ctrl-u` | Normal | Page up
+`/` | Normal | Search
+`n` | Normal | Go to next search result
+`N` | Normal | Go to previous search result
+`x` | Normal | Delete character under cursor
+`X` | Normal | (Backspace) Delete character before cursor
+`d<navigation command>` | Normal | Delete in the direction the navigation command specifies. Saves deleted text in cut/paste buffer.
+`dd` | Normal | Delete entire line
+`y<navigation command>` | Normal | Yank (Saves text into copy/paste buffer).
+`yy` | Normal | Yank entire line.
 
 ## Customization
 
 VIM is highly configurable and the average user will likely modify VIM's
-behavior to their own preferences after beginning to use VIM. This can be done
-within a VIM session using the `set` command line mode command, for example,
+behavior to their personal preferences after beginning to use VIM. This can be done
+within a VIM session using the `set` command line mode command. For example,
 running `set number` in command line mode enables line numbers along the left
 of the window. Configurations done with the `set` command will only last for
 the lifetime of the VIM session (until VIM is quit). Persistent configurations
@@ -179,20 +212,20 @@ set hlsearch incsearch ignorecase smartcase
 
 ### Plugins
 
-Plugins are computer programs written in a language called Vimscript which
+Plugins are computer programs written in a language called Vimscript that
 further extend VIM's functionality. Many of them are available from the
 official [VIM plugin repository](http://www.vim.org/scripts/), however there are
 also many available from websites like Github, which let users upload code
-and other plain text files.. Simple VIM plugins comes in
-the form of a simple .vim file which can be placed in `~/.vim/plugins`. For more
+and other plain text files. Simple VIM plugins comes in
+the form of a .vim file which can be placed in `~/.vim/plugins`. For more
 complex plugins, each file of the plugin needs to be placed the proper
 directory. 
 
 #### Plugin Managers
 
 Managing plugins manually can quickly become very complex, which is why most
-users will find using a plugin manager to be much easier. I'll talk about two
-of the most popular ones.
+users will find using a plugin manager to be much easier. Two of the most
+popular ones include:
 
 ##### Pathogen
 
@@ -203,7 +236,7 @@ directory.
 ##### Vundle
 
 [Vundle](https://github.com/gmarik/Vundle.vim) is a newer VIM plugin manager
-and is popular its direct integration with
+and is popular due to its direct integration with
 Github and similarity to a package manager, like `apt` on Ubuntu Linux, for
 example. With Vundle, URLs to plugins available from the internet, or local
 file paths to plugins are specified in your `.vimrc` and then easily
